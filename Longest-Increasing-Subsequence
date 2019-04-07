@@ -1,0 +1,88 @@
+/**
+ * 
+ * @author Srikanth K
+ */
+package com.sasebiz.learning;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class LongestIncreasingSubsequence {
+	
+	public static void main(String[] args) throws Exception { 
+		
+		Integer[] nums = {0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15};
+		
+		/**
+		 * Step1: Divide the array into two
+		 * 
+		 * Step2: find the longest increasing subsequence of the first sub array.
+		 * 
+		 *       step1: Create a new arraylist above step 2
+		 *       step2: add the first two elements into the list, if the sub array size is greater than 2.
+		 *       step3: compare the third element of the sub array with the last two elements of the array list
+		 *       		step1: if the third element is greater than n-2 element of the arraylist and less than n-1 element of the arraylist
+		 *                     then replace n-2 element of the array list with the 3rd element of the subarray.
+		 *              step2: Else if the third element is less than last two elements in the arraylist, ignore that element as the 
+		 *              	   longest increasing subsequence started forming.
+		 *              Step3: Else, as the 3rd element in the subarray is greater than both the elements, add that element to arraylist.
+		 *       step4: repeat the process for the other elements in the subarray.
+		 * 
+		 * Step3: repeat the process until the sub arrays are sorted
+		 * 
+		 * 
+		 */
+		
+		//findTheLongestIncreasingSubsequence(nums);
+		
+		List<Integer> tNums = new ArrayList<Integer>();
+		
+		/*for (int i = 0; i < (nums.length)/2; i++) { 
+			if (tNums.size() == 0) { 
+				tNums.add(nums[i]);
+				continue;
+			}
+			if (tNums.size() == 1 && nums[i] > nums[i-1]) { 
+				tNums.add(nums[i]);
+				continue;
+			}
+			List<Integer> t1 = new ArrayList<Integer>();
+			for (int j =0 ; j<tNums.size(); j++) { 
+			if (nums[i] > tNums.get(j)) { 
+				t1.add(tNums.get(j));
+			} else { 
+				
+			}
+			}
+			t1.add(nums[i]);
+			tNums.removeAll(tNums);
+			tNums.addAll(t1);
+			
+		}
+		System.out.println("" + tNums.toString());*/
+		int q = 0;
+		for (int m = q; m < nums.length; m++) { 
+			if (tNums.size() == 0) { 
+				tNums.add(nums[m]);
+				continue;
+			}
+			if (tNums.size() == 1 && nums[m] > nums[m-1]) { 
+				tNums.add(nums[m]);
+				continue;
+			}
+			if (nums[m] < tNums.get(tNums.size() - 2) 
+					&& nums[m] < tNums.get(tNums.size() - 1)) { 
+				continue;
+			}
+			else if (nums[m] > tNums.get(tNums.size() - 2) 
+					&& nums[m] < tNums.get(tNums.size() - 1)) { 
+				tNums.remove(tNums.size() - 1);
+				tNums.add(nums[m]);
+			} else { 
+				tNums.add(nums[m]);
+			}
+		}
+		System.out.println("Final :   " + tNums.toString());
+	}
+
+}
